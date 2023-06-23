@@ -1,6 +1,7 @@
 package lexer
 
 import (
+	"fmt"
 	"monkey/token"
 	"testing"
 )
@@ -89,13 +90,14 @@ let ten = 10;
 	l := New(input)
 	for i, tt := range tests {
 		tok := l.NextToken()
+		fmt.Println("token:", tok)
 		if tok.Type != tt.expectedType {
 			t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q",
 				i, tt.expectedType, tok.Type)
 		}
 		if tok.Literal != tt.expectedLiteral {
 			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q",
-				i, tt.expectedType, tok.Literal)
+				i, tt.expectedLiteral, tok.Literal)
 		}
 	}
 }
